@@ -1,0 +1,104 @@
+[user]
+  name = Yves Frederix
+  email = Yves.Frederix@dentsplysirona.com
+
+[credential]
+  helper = manager
+  useHttpPath = true
+
+[credential "https://bitbucket.dentsplysirona.com"]
+  provider = bitbucket
+
+[credential "helperselector"]
+  selected = wincred
+
+[init]
+  defaultBranch = main
+
+[color]
+  branch = auto
+  diff = auto
+  status = always
+  interactive = auto
+
+[color "status"]
+  changed = red bold
+  untracked = red
+
+[core]
+  # Keep whatever line endings was there in the original file, but write LF in
+  # the repo.
+  autocrlf = input
+
+[alias]
+  cb = rev-parse --abbrev-ref HEAD
+  ci = commit
+  cf = commit --fixup
+  co = checkout
+  di = diff --color-words
+  st = status
+  stu = status -uno
+  staged = diff --cached
+  unstaged = diff
+  both = diff HEAD
+  oneline = log --pretty=oneline --abbrev-commit
+  spull = svn rebase
+  spush = svn dcommit
+  sfetch = svn fetch
+  hide = update-index --assume-unchanged
+  unhide = update-index --no-assume-unchanged
+  serve = !git daemon --base-path=. --reuseaddr --informative-errors --verbose
+  hub = !git daemon --base-path=. --enable=receive-pack --reuseaddr --informative-errors --verbose
+  glog = log --all --decorate --oneline --graph
+  webui = !C:/DICode/git-webui/release/libexec/git-core/git-webui
+  wdiff = diff  --word-diff=color --word-diff-regex='[A-Za-z0-9. ]|[^[:space:]]'
+  addnw=!sh -c 'git diff -U0 -w --no-color "$@" | git apply --cached --ignore-whitespace --unidiff-zero -'
+  discardws=!sh -c 'git addnw && git checkout -- . && git reset'
+  editconflictfiles=!sh -c 'vim $(git diff --name-only --diff-filter=U)'
+  ff = merge --ff-only
+#  printhistoricalfilesizes=!sh -c "git rev-list --objects --all | git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' | sed -n 's/^blob //p' | sort --numeric-sort --key=2 | cut -c 1-12,41- | numfmt --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest"
+  poh = push origin HEAD
+  psoh = push --set-upstream origin HEAD
+  pfetch = fetch --prune
+  sm = submodule
+  dh = describe --always --dirty
+  branchpoint = merge-base HEAD
+  bp = branchpoint
+  bpm = branchpoint master
+  bplog = "!f() { git log $(git bpm)..; }; f"
+  showignoredfiles = "!f() { find . -type f  | git check-ignore --stdin; }; f"
+  rebase-no-edit = "!f() { GIT_SEQUENCE_EDITOR=: git rebase $@; }; f"
+  flake8 = "!f() { prun pytest --flake8 $@ $(git diff $(git bpm) --name-only); }; f"
+  cp = cherry-pick
+  tagsorted = for-each-ref --sort=creatordate --format '%(refname) %(creatordate)' refs/tags
+  pff = !git pfetch && git ff
+  # Azure DevOps
+  pr = "!f() { exec vsts code pr \"$@\"; }; f"
+  pro = "!f() { git pr show --id $@ --open; }; f"
+  repo = "!f() { exec vsts code repo \"$@\"; }; f"
+
+
+[instaweb]
+  local = false
+  httpd = lighttpd
+  port = 1234
+
+[push]
+  default = simple
+
+
+[gc]
+  autoDetach = false
+  auto = 256
+
+[rebase]
+  autosquash = true
+
+[filter "lfs"]
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+
+
+# vim: expandtab
