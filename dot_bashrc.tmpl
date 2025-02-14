@@ -2,7 +2,14 @@
 [ -d "$HOME"/.local/bin ] && export PATH="$HOME"/.local/bin:$PATH
 
 # Set the editor.
-export EDITOR=nvim-qt
+for _ed in nvim-qt nvim vim
+do
+  if (which ${_ed} > /dev/null 2>&1)
+  then
+    export EDITOR=${_ed}
+    break
+  fi
+done
 
 # Tell Google Cloud SDK to use packages from system python
 # (2024-05-14) ... IIRC, this setting avoids to a warning related to numpy... not sure anymore...
