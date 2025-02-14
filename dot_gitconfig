@@ -101,5 +101,7 @@
   clean = git-lfs clean -- %f
   smudge = git-lfs smudge -- %f
 
+[absorb]
+  maxStack = 100
 
 # vim: expandtab
