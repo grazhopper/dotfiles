@@ -14,3 +14,8 @@ done
 # Tell Google Cloud SDK to use packages from system python
 # (2024-05-14) ... IIRC, this setting avoids to a warning related to numpy... not sure anymore...
 export CLOUDSDK_PYTHON_SITEPACKAGES=1
+
+# Ensure immediate flush of the history to the file
+export HISTFILESIZE=5000
+shopt -s histappend
+PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
