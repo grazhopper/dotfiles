@@ -50,6 +50,7 @@
   serve = !git daemon --base-path=. --reuseaddr --informative-errors --verbose
   hub = !git daemon --base-path=. --enable=receive-pack --reuseaddr --informative-errors --verbose
   glog = log --all --decorate --oneline --graph
+  lgc = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
   webui = !C:/DICode/git-webui/release/libexec/git-core/git-webui
   wdiff = diff  --word-diff=color --word-diff-regex='[A-Za-z0-9. ]|[^[:space:]]'
   addnw=!sh -c 'git diff -U0 -w --no-color "$@" | git apply --cached --ignore-whitespace --unidiff-zero -'
